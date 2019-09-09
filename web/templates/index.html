@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="uploader" class="content-section">
+    <div class="form-group files">
+        <div v-if="errors" class="alert alert-danger">
+            [[ errors ]]
+        </div>
+        <div v-if="percentage === 100" class="alert alert-info">
+            Execution finished!
+        </div>
+        <form @submit.prevent="filesUploader">
+            <h3>Upload your datasets</h3>
+            <h6><em> (You can either drag and drop or
+                    select)</em></h6>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <input type="text" v-model="version" class="form-control" placeholder="Database Version"
+                        name="version" required>
+                </div>
+                <div class="col">
+                    <input type="text" v-model="model" class="form-control" placeholder="Database Model" name="model"
+                        required>
+                </div>
+            </div>
+            <br>
+            <input type="file" ref="selected" class="form-control" @change="progress = 0" :disabled="loading" multiple
+                required>
+            <br>
+            <input type=submit class="btn btn-outline-info" :disabled="loading" value="Upload">
+        </form>
+    </div>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-info" :aria-valuenow="percentage" role="progressbar"
+            aria-valuemin="0" aria-valuemax="100" :style="{ width: percentage + '%' }">[[ percentage ]]%</span>
+        </div>
+    </div>
+</div>
+<script src="../static/vue/uploader.js"></script>
+{% endblock content %}
