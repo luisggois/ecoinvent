@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, current_app
 from flask_login import login_required, current_user
 from web.models.dataset import Dataset
 from .forms.form_search import SearchForm
-from web import db, app
+from web import db
 import xml.etree.ElementTree as ET
 import json
 
@@ -17,7 +17,7 @@ def home():
 
 
 def allowed_file(filename):
-    return filename.lower().endswith(app.config['ALLOWED_EXTENSIONS'])
+    return filename.lower().endswith(current_app.config['ALLOWED_EXTENSIONS'])
 
 
 @main.route('/upload', methods=['POST'])
