@@ -14,7 +14,7 @@
                 <p class="h6"><strong>Activity: </strong>{{ dataset.activity_name }}</p>
                 <p class="h6"><strong>Geography: </strong>{{ dataset.geography_name }}</p>
                 <br>
-                <form action="{{ url_for('main.delete_dataset', dataset_id=dataset.id) }}" method="DELETE">
+                <form action="{{ url_for('main.delete_dataset', dataset_id=dataset.id) }}" method="POST">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <input class="btn btn-danger" type="submit" value="Delete">
                 </form>
